@@ -12,41 +12,41 @@ namespace Life
 {
     public partial class Form1 : Form
     {
-        bool stopFlag = false;
-        const int pow = 30;
-        bool[,] life = new bool[pow, pow];
-        bool[,] temp_life = new bool[pow, pow];
-        Button[,] sells = new Button[pow, pow];
+        private bool _stopFlag = false;
+        private const int _pow = 30;
+        private bool[,] _life = new bool[_pow, _pow];
+        private bool[,] _tempLife = new bool[_pow, _pow];
+        private Button[,] _sells = new Button[_pow, _pow];
 
         public Form1()
         {
             InitializeComponent();
 
-            this.Size = new Size(pow * 15 + 150, pow * 15 + 100);
+            this.Size = new Size(_pow * 15 + 150, _pow * 15 + 100);
 
             Button GoButton = new Button();
             GoButton.Text = "Go";
-            GoButton.Location = new Point(pow * 10 + pow * 5 + 40, 30);
+            GoButton.Location = new Point(_pow * 10 + _pow * 5 + 40, 30);
             GoButton.Click += new EventHandler(this.GObuttonClick);
             this.Controls.Add(GoButton);
 
             Button ClearButton = new Button();
             ClearButton.Text = "Clear";
-            ClearButton.Location = new Point(pow * 10 + pow * 5 + 40, 60);
+            ClearButton.Location = new Point(_pow * 10 + _pow * 5 + 40, 60);
             ClearButton.Click += new EventHandler(this.ClearbuttonClick);
             this.Controls.Add(ClearButton);
 
-            for (int i = 0; i < pow; i++)
+            for (int i = 0; i < _pow; i++)
             {
-                for (int j = 0; j < pow; j++)
+                for (int j = 0; j < _pow; j++)
                 {
-                    sells[i, j] = new Button();
-                    sells[i, j].Size = new Size(15, 15);
-                    sells[i, j].Location = new Point(i * 10 + i * 5 + 20, j * 5 + j * 10 + 30);
-                    sells[i, j].Click += new EventHandler(this.SellClick);
-                    sells[i, j].Tag = new Coord(i, j);
-                    sells[i, j].FlatStyle = FlatStyle.Flat;
-                    this.Controls.Add(sells[i, j]);
+                    _sells[i, j] = new Button();
+                    _sells[i, j].Size = new Size(15, 15);
+                    _sells[i, j].Location = new Point(i * 10 + i * 5 + 20, j * 5 + j * 10 + 30);
+                    _sells[i, j].Click += new EventHandler(this.SellClick);
+                    _sells[i, j].Tag = new Coord(i, j);
+                    _sells[i, j].FlatStyle = FlatStyle.Flat;
+                    this.Controls.Add(_sells[i, j]);
                 }
             }
             NewLife();
@@ -70,29 +70,29 @@ namespace Life
         {
             SuspendLayout();
 
-            for (int i = 0; i < pow; i++)
+            for (int i = 0; i < _pow; i++)
             {
-                for (int j = 0; j < pow; j++)
+                for (int j = 0; j < _pow; j++)
                 {
                     int numberOfNeighbors = GetNumberOfNeighbors(i, j);
 
-                    temp_life[i, j] = CheckLifeOrDie(numberOfNeighbors, life[i, j]);
+                    _tempLife[i, j] = CheckLifeOrDie(numberOfNeighbors, _life[i, j]);
                 }
             }
 
-            for (int i = 0; i < pow; i++)
+            for (int i = 0; i < _pow; i++)
             {
-                for (int j = 0; j < pow; j++)
+                for (int j = 0; j < _pow; j++)
                 {
-                    life[i, j] = temp_life[i, j];
+                    _life[i, j] = _tempLife[i, j];
 
-                    if (life[j, i])
+                    if (_life[j, i])
                     {
-                        sells[i, j].BackColor = Color.White;
+                        _sells[i, j].BackColor = Color.White;
                     }
                     else
                     {
-                        sells[i, j].BackColor = Color.Black;
+                        _sells[i, j].BackColor = Color.Black;
                     }
                 }
             }
@@ -103,36 +103,36 @@ namespace Life
         {
             int neighbor = 0;
 
-            if (life[(i - 1) == (-1) ? (pow - 1) : (i - 1), j])
+            if (_life[(i - 1) == (-1) ? (_pow - 1) : (i - 1), j])
             {
                 neighbor++;
             }
-            if (life[(i - 1) == (-1) ? (pow - 1) : (i - 1), (j - 1) == (-1) ? (pow - 1) : (j - 1)])
+            if (_life[(i - 1) == (-1) ? (_pow - 1) : (i - 1), (j - 1) == (-1) ? (_pow - 1) : (j - 1)])
             {
                 neighbor++;
             }
-            if (life[(i - 1) == (-1) ? (pow - 1) : (i - 1), (j + 1) == pow ? (0) : (j + 1)])
+            if (_life[(i - 1) == (-1) ? (_pow - 1) : (i - 1), (j + 1) == _pow ? (0) : (j + 1)])
             {
                 neighbor++;
             }
 
-            if (life[(i + 1) == pow ? (0) : (i + 1), j])
+            if (_life[(i + 1) == _pow ? (0) : (i + 1), j])
             {
                 neighbor++;
             }
-            if (life[(i + 1) == pow ? (0) : (i + 1), (j - 1) == (-1) ? (pow - 1) : (j - 1)])
+            if (_life[(i + 1) == _pow ? (0) : (i + 1), (j - 1) == (-1) ? (_pow - 1) : (j - 1)])
             {
                 neighbor++;
             }
-            if (life[(i + 1) == pow ? (0) : (i + 1), (j + 1) == pow ? (0) : (j + 1)])
+            if (_life[(i + 1) == _pow ? (0) : (i + 1), (j + 1) == _pow ? (0) : (j + 1)])
             {
                 neighbor++;
             }
-            if (life[i, (j + 1) == pow ? (0) : (j + 1)])
+            if (_life[i, (j + 1) == _pow ? (0) : (j + 1)])
             {
                 neighbor++;
             }
-            if (life[i, (j - 1) == (-1) ? (pow - 1) : (j - 1)])
+            if (_life[i, (j - 1) == (-1) ? (_pow - 1) : (j - 1)])
             {
                 neighbor++;
             }
@@ -142,10 +142,9 @@ namespace Life
 
         private void ClearbuttonClick(object sender, EventArgs e)
         {
-            stopFlag = true;
+            _stopFlag = true;
             NewLife();
         }
-
 
         private void GObuttonClick(object sender, EventArgs e)
         {
@@ -154,31 +153,31 @@ namespace Life
 
         private void GoLife()
         {
-            for (int i = 0; i < pow + pow; i++)
+            for (int i = 0; i < _pow + _pow; i++)
             {
                 NextGeneration();
                 Refresh();
-                if (stopFlag)
+                if (_stopFlag)
                 {
-                    i = pow + pow;
+                    i = _pow + _pow;
                 }
             }
-            if (stopFlag)
+            if (_stopFlag)
             {
-                stopFlag = false;
+                _stopFlag = false;
                 NewLife();
             }
         }
 
         private void NewLife()
         {
-            for (int i = 0; i < pow; i++)
+            for (int i = 0; i < _pow; i++)
             {
-                for (int j = 0; j < pow; j++)
+                for (int j = 0; j < _pow; j++)
                 {
-                    life[i, j] = false;
-                    temp_life[i, j] = false;
-                    sells[i, j].BackColor = Color.Black;
+                    _life[i, j] = false;
+                    _tempLife[i, j] = false;
+                    _sells[i, j].BackColor = Color.Black;
                 }
             }
             this.Refresh();
@@ -189,7 +188,7 @@ namespace Life
             Button btn = (Button)sender;
             Coord coord = (Coord)btn.Tag;
             btn.BackColor = Color.White;
-            life[coord.Y, coord.X] = true;
+            _life[coord.Y, coord.X] = true;
         }
     }
 
