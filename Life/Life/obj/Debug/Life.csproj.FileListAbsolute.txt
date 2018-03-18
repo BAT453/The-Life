@@ -15,3 +15,12 @@ D:\Visual Studio 2013\Projects\Life\Life\obj\Debug\Life.csproj.GenerateResource.
 D:\Visual Studio 2013\Projects\Life\Life\obj\Debug\Life.csproj.CoreCompileInputs.cache
 D:\Visual Studio 2013\Projects\Life\Life\obj\Debug\Life.exe
 D:\Visual Studio 2013\Projects\Life\Life\obj\Debug\Life.pdb
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\bin\Debug\Life.exe.config
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\bin\Debug\Life.exe
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\bin\Debug\Life.pdb
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\obj\Debug\Life.csprojResolveAssemblyReference.cache
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\obj\Debug\Life.Properties.Resources.resources
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\obj\Debug\Life.csproj.GenerateResource.cache
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\obj\Debug\Life.csproj.CoreCompileInputs.cache
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\obj\Debug\Life.exe
+C:\Users\BogAn\source\repos\Study\Life\Life\Life\obj\Debug\Life.pdb
